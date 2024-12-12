@@ -57,15 +57,7 @@
     <img src="https://via.placeholder.com/200" alt="Valid image">
   </div>
 
-  <script type="text/javascript">
-    // Add a fallback class when the image fails to load
-    document.querySelectorAll('.image-container img').forEach(img => {
-      img.onerror = () => {
-        img.parentElement.classList.add('fallback');
-        img.remove(); // Optionally remove the broken <img> tag
-      };
-    });
-  </script>
+  <script src="script.js"></script>
 
 </body>
 </html>
