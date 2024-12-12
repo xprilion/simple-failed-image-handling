@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Handling Failed Image Loading</title>
+  <style>
+    /* Basic container styling */
+    .image-container {
+      width: 200px;
+      height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f0f0; /* Fallback background */
+      border: 1px solid #ccc;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Default image styling */
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Fallback style for failed images */
+    .fallback {
+      background-image: url('fallback-image.jpg'); /* Fallback background */
+      background-size: cover;
+      background-position: center;
+    }
+
+    .fallback::after {
+      content: "Image not available";
+      font-size: 14px;
+      color: #555;
+      position: absolute;
+      text-align: center;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Example: Handling Failed Image Loading</h1>
+
+  <!-- Container with an image that fails to load -->
+  <div class="image-container">
+    <img src="nonexistent-image.jpg" alt="Image that fails to load">
+  </div>
+
+  <!-- Container with a valid image -->
+  <div class="image-container">
+    <img src="https://via.placeholder.com/200" alt="Valid image">
+  </div>
+
+  <script>
+    // Add a fallback class when the image fails to load
+    document.querySelectorAll('.image-container img').forEach(img => {
+      img.onerror = () => {
+        img.parentElement.classList.add('fallback');
+        img.remove(); // Optionally remove the broken <img> tag
+      };
+    });
+  </script>
+
+</body>
+</html>
